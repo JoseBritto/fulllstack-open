@@ -6,16 +6,16 @@ const Header = (props) => {
 }
 
 const Part = (props) =>(
-  <p>{props.title} {props.exercise}</p>
+  <p>{props.name} {props.exercises}</p>
 )
 
 const Content = (props) => {
 
   return(
     <div>
-      <Part title={props.parts[0].title} exercise={props.parts[0].exercise}/>
-      <Part title={props.parts[1].title} exercise={props.parts[1].exercise}/>
-      <Part title={props.parts[2].title} exercise={props.parts[2].exercise}/>
+      <Part name={props.parts[0].name} exercises={props.parts[0].exercises}/>
+      <Part name={props.parts[1].name} exercises={props.parts[1].exercises}/>
+      <Part name={props.parts[2].name} exercises={props.parts[2].exercises}/>
     </div>
   )
 }
@@ -25,7 +25,7 @@ const Content = (props) => {
 const Total = (props) => {
   let c = 0;
   props.parts.forEach(part => {
-    c += part.exercise;
+    c += part.exercises;
   });
   return (
     <p>Number of exercises {c}</p>
@@ -34,33 +34,30 @@ const Total = (props) => {
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
 
-  let parts = [
-  {
-    title: part1,
-    exercise: exercises1
-  },
-  {
-    title: part2,
-    exercise: exercises2
-  },
-  {
-    title: part3,
-    exercise: exercises3
-  }];
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header course={course}/>
-      <Content parts= {parts} />
-      <Total parts= {parts}/>
+      <Header course={course.name}/>
+      <Content parts= {course.parts} />
+      <Total parts= {course.parts}/>
     </div>
   )
 }
